@@ -37,21 +37,34 @@ private:
 class myQueue {
 public:
 	void push(int data) {
-		stdQueue.push_back(data);
+		stdList.push_back(data);
 	};
 	void pop() {
-		stdQueue.pop_front();
+		stdList.pop_front();
 	};
 	void printQueue() {
-		for (list<int>::const_iterator itr = stdQueue.begin(); itr != stdQueue.end(); ++itr) {
+		for (list<int>::const_iterator itr = stdList.begin(); itr != stdList.end(); ++itr) {
 			cout << *itr << " ";
 		}
 		cout << "\n";
 	}
+	int getFront() {
+		return stdList.front();
+	}
+	int getBack() {
+		return stdList.back();
+	}
+	int getSize() {
+		return stdList.size();
+	}
+	bool empty() {
+		return stdList.empty();
+	}
 
 private:
-	list<int> stdQueue;
+	list<int> stdList;
 };
+
 
 int main () {
 
@@ -105,6 +118,48 @@ int main () {
 
 	//---------------------------Queues---------------------------------------
 
+	cout << "\n";
 
+	myQueue myqueue;
+
+	myqueue.push(3);
+	myqueue.push(2);
+	myqueue.push(1);
+
+	/* Shows current stack */
+	cout << "Current stack: ";
+	myqueue.printQueue();
+
+	/* Pop once */
+	myqueue.pop();
+	cout << "After pop: ";
+	myqueue.printQueue();
+
+	/* Pop another */
+	myqueue.pop();
+	cout << "After pop: ";
+	myqueue.printQueue();
+
+	/* Push once */
+	myqueue.push(2);
+	cout << "After push: ";
+	myqueue.printQueue();
+
+	/* Push another */
+	myqueue.push(3);
+	cout << "After push: ";
+	myqueue.printQueue();
+
+	/* Current front */
+	cout << "Current front/back: " << myqueue.getFront() << "/" << myqueue.getBack() << "\n";
+
+	/* Current size */
+	cout << "Size/isEmpty: " << myqueue.getSize() << "/";
+
+	/* Bool empty */
+	if (myqueue.empty() == 1)
+		cout << "True\n";
+	else
+		cout << "False\n";
 }
 
