@@ -1,0 +1,14 @@
+Question: Describe how you could use a single array to implement three stacks.
+
+Solution: 
+		  
+		  Approach 1: Static allocation
+		  		The array could be divided fairly into 3 sections, where each section could be used to
+		  		store data as a stack.
+		  			For push: Starting from the left, store data into the array.
+		  			int counter: An integer counter will be used to track the location of the current index.
+		  			For pop: Remove the element from the current index position.
+		  		Disadvantage: This solution is simple to implement and fair, but may not be optimal. One 
+		  		stack may require much more space than another (ie. rarely used).
+		  		
+		  Approach 2: Dynamic allocation
