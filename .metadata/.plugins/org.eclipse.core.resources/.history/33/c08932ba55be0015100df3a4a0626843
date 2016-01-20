@@ -1,0 +1,46 @@
+#include <iostream>
+#include <list>
+
+using namespace std;
+
+/*
+ * Class implementations here for simplicity
+ */
+class myStack {
+public:
+
+	void push(int data) {
+		stdList.push_back(data);
+	};
+	void pop() {
+		stdList.pop_back();
+	}
+	void printStack() {
+		for (list<int>::const_iterator itr = stdList.begin(); itr != stdList.end(); ++itr) {
+			cout << *itr << " ";
+		}
+		cout << "\n";
+	}
+private:
+	list<int> stdList;
+};
+
+int main () {
+
+	/*
+	 * Simple implementation of stacks and queues with C++'s Standard Library.
+	 */
+
+	myStack mystack;
+
+	mystack.push(1);
+	mystack.push(2);
+	mystack.push(3);
+
+	/* Prints "1 2 3" */
+	mystack.printStack();
+
+	mystack.pop();
+
+}
+
