@@ -9,6 +9,29 @@ Solution:
 		  			int counter: An integer counter will be used to track the location of the current index.
 		  			For pop: Remove the element from the current index position.
 		  		Disadvantage: This solution is simple to implement and fair, but may not be optimal. One 
-		  		stack may require much more space than another (ie. rarely used).
+		  		stack may require much more space than another (ie. rarely used). If we knew the sizes of 
+		  		the stacks beforehand, we may allocate the array differently. 
 		  		
 		  Approach 2: Dynamic allocation
+		  		Stack 1 would start on the beginning [0] of the array, and stack 2 would start
+		  		at the end [n-1] of the array (where n = size of the array). Stack 3 would start at either 
+		  		the middle point [n/2], or 1/3 point [n/3] of the array.
+		  		Ideally for this method, we would want to be able to know which stack would be the largest
+		  		in size. If stack 1 is small, for example, choosing the second partitioning method could
+		  		yield improvements (delayed shifting, if required). 
+		  		
+		  		[S1---------S3---------S2] or [S1------S3------------S2]
+		  		
+		  		Stack movement:
+		  		Stack 1 will grow in increasing order [0]..[1].. while stack 2 will grow in decreasing order
+		  		[n-1]..[n-2].. Stack 3 will grow in increasing order as well [n/2]..[n/2 + 1]..
+		  		When stack 3 hits stack 2, we shift all elements of stack 3 towards stack 1, finding a point
+		  		where the free space between stack 1 and stack 3 is equal (or +/- 1) to stack 3 and stack 2.
+		  		
+		  		[S1===------S3=====|====S2]          - = empty space, = (equals) occupied space
+		  											 | = visual divider btwn S3 and S2, no significant meaning
+		  			   Shifts into                      
+		  		
+		  		[S1===---S3=====---====S2]
+		  		
+		  		Likewise, the same can occur when S1 hits S3.
