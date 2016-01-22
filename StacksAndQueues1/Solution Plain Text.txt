@@ -12,7 +12,7 @@ Solution:
 		  		stack may require much more space than another (ie. rarely used). If we knew the sizes of 
 		  		the stacks beforehand, we may allocate the array differently. 
 		  		
-		  Approach 2: Dynamic allocation
+		  Approach 2: Dynamic shifting
 		  		Stack 1 would start on the beginning [0] of the array, and stack 2 would start
 		  		at the end [n-1] of the array (where n = size of the array). Stack 3 would start at either 
 		  		the middle point [n/2], or 1/3 point [n/3] of the array.
