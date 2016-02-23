@@ -7,31 +7,41 @@ using namespace std;
 class myStack {
 public:
 	myStack() {
-		dataStkIndex = -1;
-		minStkIndex = -1;
+		dataStkIndex = 0;
+		minStkIndex = 0;
 		min = numeric_limits<int>::max();
 	}
 
 	void push(int n) {
-		dataStkIndex++;
 		dataStk[dataStkIndex] = n;
-		if (n < min) {
-			minStkIndex++;
+		dataStkIndex++;
+		if (n <= min) {
 			min = n;
 			minStk[minStkIndex] = n;
+			minStkIndex++;
 		}
 	}
 	void pop() {
-		if (dataStk[dataStkIndex] == minStk[minStkIndex]) {
+		if (dataStk[dataStkIndex-1] == minStk[minStkIndex-1]) {
 			minStkIndex--;
+			min = minStk[minStkIndex-1];
 		}
 		dataStkIndex--;
 	}
 	int getMin() {
-		return minStk[minStkIndex];
+		if (minStkIndex == -1) {
+			cout << "Stack empty; no minimum. Returning -1. ";
+			return -1;
+		}
+		return minStk[minStkIndex-1];
 	}
 	int top() {
-		return dataStk[dataStkIndex];
+		return dataStk[dataStkIndex-1];
+	}
+	void printMinStk() {
+		for (int i = 0; i < minStkIndex; i++) {
+			cout << "|" << minStk[i] << "|\n";
+		}
 	}
 
 private:
@@ -70,42 +80,15 @@ int main() {
 
 	cout << "Stack min: " << myStack.getMin() << endl;
 
+	cout << "\nMinStack:\n";
+	myStack.printMinStk();
+
 	cout << "\nMin test:\n";
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < 6; i++) {
 		cout << "Pop: " << myStack.top() << endl;
 		myStack.pop();
 		cout << "Stack min: " << myStack.getMin() << endl;
 	}
-
-	/*
-	 * 	 Bug Fix: minStdIndex likely at -1, since it started at -1.
-	 *
-	 *   Stack:
-			|1|
-			|4|
-			|1|
-			|2|
-			|2|
-			|4|
-			|4|
-			Stack min: 1
-
-		 Min test:
-			Pop: 4
-			Stack min: 1
-			Pop: 4
-			Stack min: 1
-			Pop: 2
-			Stack min: 1
-			Pop: 2
-			Stack min: 1
-			Pop: 1
-			Stack min: 17044336
-			Pop: 4
-			Stack min: 17044336
-			Pop: 1
-			Stack min: 17044336
-	 *
-	 */
+	cout << "\nRemaining element: " << myStack.top();
 
 }
